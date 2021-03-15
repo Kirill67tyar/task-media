@@ -17,3 +17,12 @@ from django.db import models
 Должна быть возможность посмотреть историю изменений каждого изображения
 """
 
+
+
+"""
+accounts.MyUser
+accounts.Profile
+
+
+
+"""

@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
-    'image_service_app.apps.ImageServiceAppConfig',
+    'image_app.apps.ImageAppConfig',
 
 ]
 
