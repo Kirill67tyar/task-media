@@ -1,1 +1,1 @@
-default_app_config = 'accounts.apps.ImageServiceAppConfig'
+# default_app_config = 'accounts.apps.ImageServiceAppConfig'
