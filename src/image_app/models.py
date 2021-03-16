@@ -1,5 +1,24 @@
+from django.db.models import (Model, ImageField, DateTimeField, ForeignKey, CASCADE)
 from django.db import models
+from simple_history.models import HistoricalRecords
+from media_service.settings import AUTH_USER_MODEL
+from django.conf import settings
 
+User = settings.AUTH_USER_MODEL
+
+
+
+
+class ImageStorage(Model):
+
+    user = ForeignKey(User, on_delete=CASCADE, related_name='images_created')
+    image = ImageField(upload_to='images/%Y/%m/%d', blank=True, verbose_name='Изображение')
+    timestamp = DateTimeField(auto_now_add=True)
+    history = HistoricalRecords()
+
+    class Meta:
+        verbose_name = 'Хранилище изоборажений'
+        verbose_name_plural = 'Хранилище изоборажений'
 
 
 
@@ -19,10 +38,20 @@ from django.db import models
 
 
 
+"""СО страницы можно отправить картинку на сервер в папку 'media' асинхронно (без перезагрузки)"""
+# Скорее всего это можно сделать только с помощью Ajax
+
+
+
 """
 accounts.MyUser
 accounts.Profile
 
-
+image_app.MediaStorage
+fields:
+- image
+- created
+- updated
+- user (ForeignKey)
 
 """
