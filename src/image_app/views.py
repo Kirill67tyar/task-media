@@ -6,7 +6,8 @@ def check(request):
     return render(request, template_name='image_app/home.html', context={})
 
 
-
+def personal(reqeust):
+    pass
 
 """
 check

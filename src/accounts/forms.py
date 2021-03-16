@@ -6,28 +6,23 @@ from django.contrib.auth.hashers import check_password
 
 User = get_user_model()
 attrs = {'attrs': {'class': 'form-control'}}
-email = forms.EmailInput(**attrs)
-password = forms.PasswordInput(**attrs)
+email_widget = forms.EmailInput(**attrs)
+password_widget = forms.PasswordInput(**attrs)
 
 
 
 
 class RegisterModelForm(forms.ModelForm):
 
-    # password = forms.CharField(label='Введите пароль', required=True, widget=forms.PasswordInput)
-    # password2 = forms.CharField(label='Введите пароль еще раз', required=True, widget=forms.PasswordInput)
+    password = forms.CharField(label='Введите пароль', required=True, widget=password_widget)
+    password2 = forms.CharField(label='Введите пароль еще раз', required=True, widget=password_widget)
 
     class Meta:
         model = get_user_model()
-        fields = 'email', 'password', 'password2',
+        fields = ('email', 'password', 'password2',)
+        widgets = {'email': email_widget,}
+        labels = {'email': 'Введите email',}
 
-        widgets = {'email': email,
-                   'password': password,
-                   'password2': password,}
-
-        labels = {'email': 'Введите email',
-                  'password': 'Введите пароль',
-                  'password2': 'Введите пароль еще раз',}
 
     def clean_password2(self, *args, **kwargs):
         data = self.cleaned_data
@@ -41,10 +36,11 @@ class RegisterModelForm(forms.ModelForm):
 
 
 
+
 class LoginForm(forms.Form):
 
-    email = forms.CharField(label='email',required=True, widget=email)
-    password = forms.CharField(label='password',required=True, widget=password)
+    email = forms.CharField(label='email',required=True, widget=email_widget)
+    password = forms.CharField(label='password',required=True, widget=password_widget)
 
     def clean(self, *args, **kwargs):
         data = self.cleaned_data
