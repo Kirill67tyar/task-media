@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Личный кабинет{% endblock %}
+
+{% block content %}
+
+<div class="col-lg-10">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID в db</th>
+            <th scope="col">Изображение</th>
+            <th scope="col">Путь в приложении</th>
+            <th scope="col">Изменить</th>
+            <th scope="col">Удалить</th>
+            <!--            <th scope="col">История</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        {% for obj in image_list %}
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{obj.pk}}</td>
+            <td>
+                <div class="mn-img">
+                    <img src="{{ obj.image.url }}" width="40" height="55" alt="lorem"/>
+                </div>
+            </td>
+
+            <td>{{obj.image}}</td>
+            <td><a href="#">Изменить</a></td>
+            <td><a href="#">Удалить</a></td>
+        </tr>
+        {% endfor %}
+        <!--        <tr>-->
+        <!--            <th scope="row">2</th>-->
+        <!--            <td>Jacob</td>-->
+        <!--            <td>Thornton</td>-->
+        <!--            <td>@fat</td>-->
+        <!--        </tr>-->
+        <!--        <tr>-->
+        <!--            <th scope="row">3</th>-->
+        <!--            <td colspan="2">Larry the Bird</td>-->
+        <!--            <td>@twitter</td>-->
+        <!--        </tr>-->
+        </tbody>
+    </table>
+</div>
+<div class="col-lg-3">
+    <table class="table table-success table-striped table-sm">
+        <thead>
+        <tr>
+            <th scope="row">Мои действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>some action</td>
+        </tr>
+        <tr>
+            <td>some action</td>
+        </tr>
+        <tr>
+            <td>some action</td>
+        </tr>
+        <tr>
+            <td>some action</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}

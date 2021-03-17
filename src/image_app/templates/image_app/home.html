@@ -3,9 +3,24 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-<h1>Таа-ШАА</h1>
-<div class="mb-3">
-    <label for="formFile" class="form-label">Default file input example</label>
-    <input class="form-control" type="file" id="formFile">
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <form method="post" action="{% url 'image_app:check' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+
+
+                {{form.media}}
+                {{form.image}}
+
+
+            <button class="btn btn-primary" type="submit">Отправить</button>
+        </form>
+    </div>
 </div>
+
+<!--<div class="mb-3">-->
+<!--    <label for="formFile" class="form-label">Default file input example</label>-->
+<!--    <input class="form-control" type="file" id="formFile">-->
+<!--</div>-->
 {% endblock %}
